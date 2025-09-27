@@ -4,4 +4,4 @@
 Этот репозиторий является каркасом для будущего веб-приложения.
 
 ## Ссылки
-- [Публичная страница на GitHub Pages](https://ВАШ_ЛОГИН.github.io/myawesome-project/)
+- [Публичная страница на GitHub Pages](https://So282.github.io/myawesome-project/)
