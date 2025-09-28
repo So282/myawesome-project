@@ -1,0 +1,228 @@
+/* =============== 1. ДИЗАЙН-ТОКЕНЫ (:root) =============== */
+:root {
+  /* Цвета */
+  --color-bg: #fff;
+  --color-fg: #0b0b0b;
+  --color-muted: #666;
+  --color-primary: #0a84ff;
+  --color-danger: #b00020;
+
+  /* Типографика */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Отступы (ритм) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+
+  /* Скругления и тени */
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* =============== 2. RESET + БАЗА =============== */
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  padding: var(--space-3);
+}
+
+/* Плавная прокрутка к якорям */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Медиа не вылезают */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Формы наследуют шрифт и цвет */
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Фокус-контуры (только для клавиатуры) */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Недоступные элементы */
+:disabled, [aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Подсветка целевой секции при якорной ссылке */
+:target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
+  scroll-margin-top: var(--space-4);
+}
+
+/* =============== 3. КОМПОНЕНТЫ (БЭМ) =============== */
+
+/* Шапка */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+  margin-bottom: var(--space-5);
+}
+.site-header__brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+/* Навигация */
+.site-nav__list {
+  display: flex;
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.site-nav__link {
+  text-decoration: none;
+  color: var(--color-fg);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+  transition: background 0.2s;
+}
+.site-nav__link:hover,
+.site-nav__link:focus-visible {
+  background: rgba(10, 132, 255, 0.1);
+  outline: none;
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+  margin-bottom: var(--space-4);
+}
+.breadcrumbs__link {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.breadcrumbs__current {
+  color: var(--color-muted);
+}
+
+/* Кнопки */
+.btn {
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: filter 0.2s;
+}
+.btn--primary {
+  background: var(--color-primary);
+  color: white;
+}
+.btn--secondary {
+  background: #eee;
+  color: var(--color-fg);
+}
+.btn:hover {
+  filter: brightness(0.95);
+}
+
+/* Форма */
+.form {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.form__label {
+  display: block;
+  margin: var(--space-3) 0 var(--space-2);
+  font-weight: 600;
+}
+.form__input,
+.form__select,
+.form__textarea {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid #c8c8c8;
+  border-radius: var(--radius);
+  background: #fff;
+}
+.form__input[aria-invalid="true"],
+.form__select[aria-invalid="true"],
+.form__textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+.form__help {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+.form__actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+/* Модальное окно */
+.modal {
+  padding: var(--space-4);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.modal::backdrop {
+  background: rgba(0,0,0,0.5);
+}
+
+/* Герой-секция (фон с градиентом) */
+.hero {
+  background: 
+    linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.15)),
+    url("https://picsum.photos/1920/600?text=Hero") center/cover no-repeat;
+  color: white;
+  padding: clamp(2rem, 6vw, 6rem) 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+/* Медиа-контейнер (для видео и iframe) */
+.media {
+  aspect-ratio: 16/9;
+  width: min(100%, 960px);
+  margin-inline: auto;
+}
+.media iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: var(--radius);
+}
+
+/* Подвал */
+.footer {
+  margin-top: var(--space-5);
+  padding-top: var(--space-3);
+  border-top: 1px solid #eee;
+  color: var(--color-muted);
+}
