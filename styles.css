@@ -221,7 +221,7 @@ button, input, select, textarea {
 
 /* Подвал */
 .footer {
-  margin-top: var(--space-5);
+  margin-top: 200px;
   padding-top: var(--space-3);
   border-top: 1px solid #eee;
   color: var(--color-muted);
